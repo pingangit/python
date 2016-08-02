@@ -1,7 +1,5 @@
 #!/usr/bin/python
 # coding=utf-8
-# Copyright 2016 PingAn Cloud Branch
-# All Rights Reserved.
 # Author  : Kang Xiaoning
 # Date    : August, 2016
 
