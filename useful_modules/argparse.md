@@ -44,7 +44,7 @@ if __name__ == '__main__':
     get_last()
 ```
 2. 测试
-```
+```bash
 [root@SZB-L0009803 py201]# ./tail.py 
 usage: tail.py [-h] [-n N] filename
 tail.py: error: too few arguments
