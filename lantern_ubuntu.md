@@ -1,0 +1,29 @@
+Ubuntu安装lantern
+================
+
+# 1. 下载deb包
+网址：https://github.com/getlantern/lantern
+
+# 2. 安装
+```
+dbo@dbo-pc:~/下载$ ls -l
+总用量 3244
+-rw-rw-r-- 1 dbo dbo 3319946 10月 22 12:15 lantern-installer-beta-64-bit.deb
+dbo@dbo-pc:~/下载$ sudo dpkg -i lantern-installer-beta-64-bit.deb 
+[sudo] dbo 的密码： 
+正在选中未选择的软件包 lantern。
+(正在读取数据库 ... 系统当前共安装有 281206 个文件和目录。)
+正准备解包 lantern-installer-beta-64-bit.deb  ...
+正在解包 lantern (3.2.0) ...
+正在设置 lantern (3.2.0) ...
+正在处理用于 hicolor-icon-theme (0.15-0ubuntu1) 的触发器 ...
+正在处理用于 bamfdaemon (0.5.3~bzr0+16.04.20160701-0ubuntu1) 的触发器 ...
+Rebuilding /usr/share/applications/bamf-2.index...
+正在处理用于 gnome-menus (3.13.3-6ubuntu3.1) 的触发器 ...
+正在处理用于 desktop-file-utils (0.22-1ubuntu5) 的触发器 ...
+正在处理用于 mime-support (3.59ubuntu1) 的触发器 ...
+dbo@dbo-pc:~/下载$ 
+```
+# 3. 使用
+        安装完成后，在Ubuntu的“搜索您的计算机”（左上角）输入lantern即可看到。为了方便使用，拖动到
+    左侧Dock栏，以后要使用的时候点击一下一可以了。
