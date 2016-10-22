@@ -44,7 +44,40 @@ if __name__ == '__main__':
     get_last()
 ```
 2. 测试
-```bash
+
+    给定各种非法参数，测试结果显示 argparse 可以给出友好提示，默认支持 help 选项。还有很多
+    
+其它选项，需要的时候查看文档即可。
+    
+```shell
+[root@SZB-L0009803 py201]# ./tail.py -h
+usage: tail.py [-h] [-n N] filename
+
+A command like tail on Linux.
+
+positional arguments:
+  filename    Filename
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -n N        Number (default is 5)
+
+Example: ./tail.py FILENAME -n N
+[root@SZB-L0009803 py201]# 
+[root@SZB-L0009803 py201]# ./tail.py --help
+usage: tail.py [-h] [-n N] filename
+
+A command like tail on Linux.
+
+positional arguments:
+  filename    Filename
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -n N        Number (default is 5)
+
+Example: ./tail.py FILENAME -n N
+[root@SZB-L0009803 py201]#
 [root@SZB-L0009803 py201]# ./tail.py 
 usage: tail.py [-h] [-n N] filename
 tail.py: error: too few arguments
