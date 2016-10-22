@@ -3,7 +3,7 @@ argparse 简单使用
 
         练习 argparse 用法，从命令行获取参数值，并将值应用到具体函数中，可对命令行参数数据类型进行约束。
 # 1. 实现tail命令的Python脚本
-```
+```python
 #!/bin/env python
 
 import sys
