@@ -2,7 +2,7 @@ weakref 简单使用
 ==============
 
         练习 weakref 使用，掌握 weakref 使用场景和目的。
-        [示例参考](http://sleepd.blog.51cto.com/3034090/1073044)
+   [示例参考](http://sleepd.blog.51cto.com/3034090/1073044)
         
 # 1. 概念
 
