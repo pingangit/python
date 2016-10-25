@@ -186,13 +186,13 @@ if __name__ == '__main__':
         可以按预期参数使用并得到结果。
 
 ```shell
-[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s dbo.com paic.com.cn dbo.com yun.dbo.com_2048_1116 all.stock.dbo.com all.yun.dbo.com_SSL_profile
+[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s dbo.com dbo.com.cn dbo.com yun.dbo.com_2048_1116 all.stock.dbo.com all.yun.dbo.com_SSL_profile
 dbo.com VS_PACLOUD_443_PRDR2016031405789 10.49.161.122:443
 
 Result: lfa_dmz_bigip.conf match 'dbo.com' ssl profile count£º1
 
 
-Result: lfa_dmz_bigip.conf match 'paic.com.cn' ssl profile count£º0
+Result: lfa_dmz_bigip.conf match 'dbo.com.cn' ssl profile count£º0
 
 
 Result: lfa_dmz_bigip.conf match 'dbo.com' ssl profile count£º0
@@ -248,7 +248,7 @@ optional arguments:
 
 for filename in $(ls *.conf)
 do
-    ./get_vip_by_ssl_v1.py $filename -s dbo.com paic.com.cn \
+    ./get_vip_by_ssl_v1.py $filename -s dbo.com dbo.com.cn \
     dbo.com yun.dbo.com_2048_1116 all.stock.dbo.com all.yun.dbo.com_SSL_profile \
     any.4008000000.com dbo.com. www.4008000000.com mobile.health.dbo.com_SSL_Profile
     echo "---------------------------------------------------"
