@@ -123,7 +123,7 @@ tail.py: error: argument -n: -1000 is an invalid positive int value
 # 3. 实际使用
 ## 3.1 脚本
         从 ltm 的 bigip.conf 中提取需要的信息，指定文件名，指定多个 ssl profile 名字。
-```
+```python
 #!/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -185,7 +185,7 @@ if __name__ == '__main__':
 
         可以按预期参数使用并得到结果。
 
-```
+```shell
 [root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s pa18.com paic.com.cn pingan.com yun.pingan.com_2048_1116 all.stock.pingan.com all.yun.pingan.com_SSL_profile
 pa18.com VS_PACLOUD_443_PRDR2016031405789 10.49.161.122:443
 
