@@ -119,3 +119,139 @@ usage: tail.py [-h] [-n N] filename
 tail.py: error: argument -n: -1000 is an invalid positive int value
 [root@SZB-L0009803 py201]# 
 ```
+
+# 3. 实际使用
+## 3.1 脚本
+        从 ltm 的 bigip.conf 中提取需要的信息，指定文件名，指定多个 ssl profile 名字。
+```
+#!/bin/env python
+# -*- coding: utf-8 -*-
+
+import textwrap
+import re
+import argparse
+
+
+def _get_vs_by_ssl(ssl_profile, filename):
+    print(ssl_profile)
+    new_ssl_profile = '/Common/' + ssl_profile +' {'
+    with open(filename) as conf:
+        ret = []
+        # 将配置文件转换为一行字符串
+        bigip_conf = conf.read()
+        # 提取 virtual_server 相关配置，每个 VS 是 list 中一个 item
+        virtual_servers = re.findall(r'(ltm virtual /Common/.*?\n}\n)', bigip_conf, re.S)
+        for vs in virtual_servers:
+            if new_ssl_profile in vs and "context clientside" in vs:
+                vs = vs.split()
+                print('{0} {1} {2}'.format(ssl_profile, vs[2].strip('/Common/'),vs[5].strip('/Common/')))
+                ret.append(vs)
+        print("\nResult: {0} match '{1}' ssl profile count：{2}\n".format(filename, ssl_profile, len(ret)))
+
+
+def main():
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     # 指定缩进格式
+                                     description=textwrap.dedent("""
+                                     Description:
+                                       Get virtual server name、vip、ssl profile
+                                       name from ltm bigip conf(default name is
+                                       bigip.conf).
+                                     """))
+    parser.add_argument('filename',
+                        action='store',
+                        help='the name of bigip.conf'
+                        )
+    parser.add_argument('-s',
+                        '--ssl_profile',
+                        action='store',
+                        default=[],
+                        help='add ssl profile name split by space',
+                        dest='ssl_profile',
+                        required=True,
+                        nargs='+')  # nargs 表示命令行参数可以出现的次数，这里表示多次
+    args = parser.parse_args()
+    filename = args.filename
+    ssl_profile_list = args.ssl_profile
+    print(filename)
+    print(ssl_profile_list)
+    for ssl_profile in ssl_profile_list:
+        _get_vs_by_ssl(ssl_profile, filename)
+
+if __name__ == '__main__':
+    main()
+```
+## 3.2 使用
+
+        可以按预期参数使用并得到结果。
+
+```
+[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s pa18.com paic.com.cn pingan.com yun.pingan.com_2048_1116 all.stock.pingan.com all.yun.pingan.com_SSL_profile
+pa18.com VS_PACLOUD_443_PRDR2016031405789 10.49.161.122:443
+
+Result: lfa_dmz_bigip.conf match 'pa18.com' ssl profile count£º1
+
+
+Result: lfa_dmz_bigip.conf match 'paic.com.cn' ssl profile count£º0
+
+
+Result: lfa_dmz_bigip.conf match 'pingan.com' ssl profile count£º0
+
+
+Result: lfa_dmz_bigip.conf match 'yun.pingan.com_2048_1116' ssl profile count£º0
+
+all.stock.pingan.com VS_PACLOUD_443_PRDR2016042907546 10.49.161.188:443
+all.stock.pingan.com VS_PACLOUD_443_STGR2016042907544 10.49.161.64:443
+
+Result: lfa_dmz_bigip.conf match 'all.stock.pingan.com' ssl profile count£º2
+
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800144 100.64.190.244:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2015120403490 10.49.161.250:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800133 100.64.190.129:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800134 100.64.190.60:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800135 100.64.190.254:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800136 100.64.190.154:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800137 100.64.190.192:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016031405770 10.49.161.26:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016071209500 10.49.161.139:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016071209539 100.64.190.53:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209921 100.64.190.142:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209915 100.64.190.215:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209918 100.64.190.164:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209919 100.64.190.128:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016070509415 100.64.190.184:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016061608953 10.49.161.92:443
+all.yun.pingan.com_SSL_profile VS_PACLOUD_5050_STGR2016072209920 100.64.190.142:5050
+all.yun.pingan.com_SSL_profile VS_PACLOUD_5050_STGR2016072209872 100.64.190.184:5050
+all.yun.pingan.com_SSL_profile VS_PACLOUD_8000_STGR2016072209870 100.64.190.184:8000
+all.yun.pingan.com_SSL_profile VS_PACLOUD_9090_STGR2016072209871 100.64.190.184:9090
+
+Result: lfa_dmz_bigip.conf match 'all.yun.pingan.com_SSL_profile' ssl profile count£º20
+
+[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py -h
+usage: get_vip_by_ssl_v1.py [-h] -s SSL_PROFILE [SSL_PROFILE ...] filename
+
+Description:
+  Get virtual server name¡¢vip¡¢ssl profile
+  name from ltm bigip conf(default name is
+  bigip.conf).
+
+positional arguments:
+  filename              the name of bigip.conf
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SSL_PROFILE [SSL_PROFILE ...], --ssl_profile SSL_PROFILE [SSL_PROFILE ...]
+                        add ssl profile name split by space
+[root@SZB-L0031511 bigip]# cat main_v1.sh 
+#!/bin/bash
+
+for filename in $(ls *.conf)
+do
+    ./get_vip_by_ssl_v1.py $filename -s pa18.com paic.com.cn \
+    pingan.com yun.pingan.com_2048_1116 all.stock.pingan.com all.yun.pingan.com_SSL_profile \
+    any.4008000000.com pa18.com. www.4008000000.com mobile.health.pingan.com_SSL_Profile
+    echo "---------------------------------------------------"
+done
+[root@SZB-L0031511 bigip]#
+```
