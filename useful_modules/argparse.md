@@ -186,47 +186,47 @@ if __name__ == '__main__':
         可以按预期参数使用并得到结果。
 
 ```shell
-[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s pa18.com paic.com.cn pingan.com yun.pingan.com_2048_1116 all.stock.pingan.com all.yun.pingan.com_SSL_profile
-pa18.com VS_PACLOUD_443_PRDR2016031405789 10.49.161.122:443
+[root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py lfa_dmz_bigip.conf -s dbo.com paic.com.cn dbo.com yun.dbo.com_2048_1116 all.stock.dbo.com all.yun.dbo.com_SSL_profile
+dbo.com VS_PACLOUD_443_PRDR2016031405789 10.49.161.122:443
 
-Result: lfa_dmz_bigip.conf match 'pa18.com' ssl profile count£º1
+Result: lfa_dmz_bigip.conf match 'dbo.com' ssl profile count£º1
 
 
 Result: lfa_dmz_bigip.conf match 'paic.com.cn' ssl profile count£º0
 
 
-Result: lfa_dmz_bigip.conf match 'pingan.com' ssl profile count£º0
+Result: lfa_dmz_bigip.conf match 'dbo.com' ssl profile count£º0
 
 
-Result: lfa_dmz_bigip.conf match 'yun.pingan.com_2048_1116' ssl profile count£º0
+Result: lfa_dmz_bigip.conf match 'yun.dbo.com_2048_1116' ssl profile count£º0
 
-all.stock.pingan.com VS_PACLOUD_443_PRDR2016042907546 10.49.161.188:443
-all.stock.pingan.com VS_PACLOUD_443_STGR2016042907544 10.49.161.64:443
+all.stock.dbo.com VS_PACLOUD_443_PRDR2016042907546 10.49.161.188:443
+all.stock.dbo.com VS_PACLOUD_443_STGR2016042907544 10.49.161.64:443
 
-Result: lfa_dmz_bigip.conf match 'all.stock.pingan.com' ssl profile count£º2
+Result: lfa_dmz_bigip.conf match 'all.stock.dbo.com' ssl profile count£º2
 
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800144 100.64.190.244:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2015120403490 10.49.161.250:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800133 100.64.190.129:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800134 100.64.190.60:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800135 100.64.190.254:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800136 100.64.190.154:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016072800137 100.64.190.192:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016031405770 10.49.161.26:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_PRDR2016071209500 10.49.161.139:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016071209539 100.64.190.53:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209921 100.64.190.142:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209915 100.64.190.215:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209918 100.64.190.164:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016072209919 100.64.190.128:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016070509415 100.64.190.184:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_443_STGR2016061608953 10.49.161.92:443
-all.yun.pingan.com_SSL_profile VS_PACLOUD_5050_STGR2016072209920 100.64.190.142:5050
-all.yun.pingan.com_SSL_profile VS_PACLOUD_5050_STGR2016072209872 100.64.190.184:5050
-all.yun.pingan.com_SSL_profile VS_PACLOUD_8000_STGR2016072209870 100.64.190.184:8000
-all.yun.pingan.com_SSL_profile VS_PACLOUD_9090_STGR2016072209871 100.64.190.184:9090
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800144 192.64.190.244:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2015120403490 10.49.161.250:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800133 192.64.190.129:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800134 192.64.190.60:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800135 192.64.190.254:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800136 192.64.190.154:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016072800137 192.64.190.192:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016031405770 10.49.161.26:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_PRDR2016071209500 10.49.161.139:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016071209539 192.64.190.53:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016072209921 192.64.190.142:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016072209915 192.64.190.215:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016072209918 192.64.190.164:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016072209919 192.64.190.128:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016070509415 192.64.190.184:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_443_STGR2016061608953 10.49.161.92:443
+all.yun.dbo.com_SSL_profile VS_PACLOUD_5050_STGR2016072209920 192.64.190.142:5050
+all.yun.dbo.com_SSL_profile VS_PACLOUD_5050_STGR2016072209872 192.64.190.184:5050
+all.yun.dbo.com_SSL_profile VS_PACLOUD_8000_STGR2016072209870 192.64.190.184:8000
+all.yun.dbo.com_SSL_profile VS_PACLOUD_9090_STGR2016072209871 192.64.190.184:9090
 
-Result: lfa_dmz_bigip.conf match 'all.yun.pingan.com_SSL_profile' ssl profile count£º20
+Result: lfa_dmz_bigip.conf match 'all.yun.dbo.com_SSL_profile' ssl profile count£º20
 
 [root@SZB-L0031511 bigip]# ./get_vip_by_ssl_v1.py -h
 usage: get_vip_by_ssl_v1.py [-h] -s SSL_PROFILE [SSL_PROFILE ...] filename
@@ -248,9 +248,9 @@ optional arguments:
 
 for filename in $(ls *.conf)
 do
-    ./get_vip_by_ssl_v1.py $filename -s pa18.com paic.com.cn \
-    pingan.com yun.pingan.com_2048_1116 all.stock.pingan.com all.yun.pingan.com_SSL_profile \
-    any.4008000000.com pa18.com. www.4008000000.com mobile.health.pingan.com_SSL_Profile
+    ./get_vip_by_ssl_v1.py $filename -s dbo.com paic.com.cn \
+    dbo.com yun.dbo.com_2048_1116 all.stock.dbo.com all.yun.dbo.com_SSL_profile \
+    any.4008000000.com dbo.com. www.4008000000.com mobile.health.dbo.com_SSL_Profile
     echo "---------------------------------------------------"
 done
 [root@SZB-L0031511 bigip]#
